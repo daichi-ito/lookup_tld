@@ -6,5 +6,6 @@ res = Net::HTTP.get_response URI.parse 'https://ja.wikipedia.org/wiki/%E7%89%B9%
 doc = REXML::Document.new(res.body)
 src = doc.root.get_elements('page/revision/text').first.text
 
-results = src.scan(/\.(\w+)/)
+results = src.scan(/\[\[\.(\w+)\]\]/)
 results.each {|x| puts x}
+
